@@ -11,7 +11,7 @@ class CoursesPresenter
         name: course.name,
         description: course.description,
         duration: course.duration,
-        url: rails_blob_url(course.featured_image)
+        url: course.featured_image.attachment.service_url
       }
     end
   end

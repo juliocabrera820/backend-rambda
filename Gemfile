@@ -4,6 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
+gem 'aws-sdk-s3'
+gem 'dotenv-rails'
 gem 'rails', '~> 6.1.3'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'

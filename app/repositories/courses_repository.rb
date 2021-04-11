@@ -1,14 +1,15 @@
 class CoursesRepository
   def all
-    Course.all
+    Course.includes(:lessons).all
   end
 
-  def create(course)
-    Course.create(course)
+  def create(course_params)
+    course = Course.new(course_params)
+    course.save!
   end
 
   def show(id)
-    Course.find(id)
+    Course.includes(:lessons).find(id)
   end
 
   def update(id, course_params)

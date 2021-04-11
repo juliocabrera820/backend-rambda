@@ -7,9 +7,8 @@ module Api
       end
 
       def create
-        course = Course.new(course_params)
         if CoursesRepository.new.create(course_params)
-          render json: CoursePresenter.new(course).as_json, status: :created
+          render json: { message: 'course created successfully' }, status: :created
         else
           render json: course.error, status: :unprocessable_entity
         end

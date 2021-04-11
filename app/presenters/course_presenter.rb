@@ -1,5 +1,4 @@
 class CoursePresenter
-  include Rails.application.routes.url_helpers
   def initialize(course)
     @course = course
   end
@@ -10,7 +9,7 @@ class CoursePresenter
       name: course.name,
       description: course.description,
       duration: course.duration,
-      url: course.featured_image.attachment.service_url
+      image_url: course.featured_image.attachment.url
     }
   end
 

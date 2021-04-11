@@ -9,7 +9,8 @@ class CoursePresenter
       name: course.name,
       description: course.description,
       duration: course.duration,
-      image_url: course.featured_image.attachment.url
+      image_url: course.featured_image.attachment.url,
+      lessons: course.lessons
     }
   end
 

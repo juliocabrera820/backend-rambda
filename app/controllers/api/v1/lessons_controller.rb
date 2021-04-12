@@ -30,7 +30,7 @@ module Api
       private
 
       def lesson_params
-        params.except(:format).permit(:lesson_number, :title, :description, :video_url).to_h
+        params.except(:format).permit(:lesson_number, :title, :description, :video_url)
       end
     end
   end

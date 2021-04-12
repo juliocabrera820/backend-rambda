@@ -1,5 +1,9 @@
 class CoursesRepository
-  def all
+  def all(page = nil)
+    if page
+      per_page = 6
+      return Course.limit(per_page).offset(per_page * (page.to_i - 1))
+    end
     Course.includes(:lessons, :sales).all
   end
 

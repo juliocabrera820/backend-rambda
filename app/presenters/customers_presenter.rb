@@ -5,11 +5,12 @@ class CustomersPresenter
 
   def as_json
     customers.map do |customer|
+      customer_decorator = CustomerDecorator.new(customer)
       {
         id: customer.id,
         name: customer.name,
         email: customer.email,
-        sales: customer.sales
+        sales: customer_decorator.sales
       }
     end
   end

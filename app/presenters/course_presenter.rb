@@ -11,7 +11,8 @@ class CoursePresenter
       duration: course.duration,
       price: course.price,
       image_url: course.featured_image.attachment.url,
-      lessons: course.lessons
+      lessons: course.lessons,
+      sales: course.sales
     }
   end
 

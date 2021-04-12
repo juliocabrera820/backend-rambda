@@ -1,6 +1,6 @@
 class CoursesRepository
   def all
-    Course.includes(:lessons).all
+    Course.includes(:lessons, :sales).all
   end
 
   def create(course_params)
@@ -9,7 +9,7 @@ class CoursesRepository
   end
 
   def show(id)
-    Course.includes(:lessons).find(id)
+    Course.includes(:lessons, :sales).find(id)
   end
 
   def update(id, course_params)

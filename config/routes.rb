@@ -4,6 +4,8 @@ Rails.application.routes.draw do
       resources :courses do
         resources :lessons
       end
+      resources :customers
+      resources :sales, except: [:update, :destroy]
     end
   end
 end

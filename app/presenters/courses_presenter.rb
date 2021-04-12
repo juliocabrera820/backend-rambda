@@ -5,16 +5,15 @@ class CoursesPresenter
 
   def as_json
     courses.map do |course|
-      course_decorator = CourseDecorator.new(course)
       {
         id: course.id,
         name: course.name,
         description: course.description,
         duration: course.duration,
         price: course.price,
-        image_url: course_decorator.image_url,
-        lessons: course_decorator.lessons,
-        sales: course_decorator.sales
+        image_url: course.featured_image.attachment.url,
+        lessons: course.lessons,
+        sales: course.sales
       }
     end
   end

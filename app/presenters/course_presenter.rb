@@ -1,7 +1,6 @@
 class CoursePresenter
   def initialize(course)
     @course = course
-    @course_decorator = CourseDecorator.new(course)
   end
 
   def as_json
@@ -11,13 +10,13 @@ class CoursePresenter
       description: course.description,
       duration: course.duration,
       price: course.price,
-      image_url: course_decorator.image_url,
-      lessons: course_decorator.lessons,
-      sales: course_decorator.sales
+      image_url: course.featured_image.attachment.url,
+      lessons: course.lessons,
+      sales: course.sales
     }
   end
 
   private
 
-  attr_reader :course, :course_decorator
+  attr_reader :course
 end

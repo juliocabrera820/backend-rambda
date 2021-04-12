@@ -1,7 +1,6 @@
 class CustomerPresenter
   def initialize(customer)
     @customer = customer
-    @customer_decorator = CustomerDecorator.new(@customer)
   end
 
   def as_json
@@ -9,11 +8,11 @@ class CustomerPresenter
       id: customer.id,
       name: customer.name,
       email: customer.email,
-      sales: customer_decorator.sales
+      sales: customer.sales
     }
   end
 
   private
 
-  attr_reader :customer, :customer_decorator
+  attr_reader :customer
 end

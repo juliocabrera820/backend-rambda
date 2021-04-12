@@ -2,10 +2,6 @@ module Api
   module V1
     class CoursesController < ApplicationController
       def index
-        if params[:page]
-          courses = CoursesRepository.new.all(params[:page])
-          return render json: CoursesPresenter.new(courses).as_json, status: :ok
-        end
         courses = CoursesRepository.new.all
         render json: CoursesPresenter.new(courses).as_json, status: :ok
       end
@@ -25,9 +21,9 @@ module Api
 
       def update
         if CoursesRepository.new.update(params[:id], course_params)
-          render json: { message: 'Course has been successfully updated' }, status: :ok
+          render json: { message: 'Course has been successfully updated'}, status: :ok
         else
-          render json: { message: 'Course could not be updated' }, status: :unprocessable_entity
+          render json: { message: 'Course could not be updated'}, status: :unprocessable_entity
         end
       end
 

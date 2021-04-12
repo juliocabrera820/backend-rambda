@@ -35,7 +35,7 @@ module Api
       private
 
       def course_params
-        params.except(:format).permit(:name, :description, :duration, :featured_image).to_h
+        params.except(:format).permit(:name, :description, :duration, :price, :featured_image)
       end
     end
   end

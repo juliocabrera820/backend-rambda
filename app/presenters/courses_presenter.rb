@@ -10,6 +10,7 @@ class CoursesPresenter
         name: course.name,
         description: course.description,
         duration: course.duration,
+        price: course.price,
         image_url: course.featured_image.attachment.url,
         lessons: course.lessons
       }

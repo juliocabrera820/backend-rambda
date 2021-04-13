@@ -1,6 +1,8 @@
 module Api
   module V1
     class CustomersController < ApplicationController
+      rescue_from ActiveRecord::RecordNotUnique, with: :not_unique
+
       def index
         customers = CustomersRepository.new.all
         render json: CustomersPresenter.new(customers).as_json, status: :ok
@@ -36,6 +38,10 @@ module Api
 
       def customer_params
         params.permit(:name, :email, :password)
+      end
+
+      def not_unique
+        render json: { message: 'email must be unique' }, status: :unprocessable_entity
       end
     end
   end

@@ -4,7 +4,7 @@ class CoursesRepository
       per_page = 6
       return Course.limit(per_page).offset(per_page * (page.to_i - 1))
     end
-    Course.includes(:lessons, :sales).all
+    Course.all
   end
 
   def create(course_params)
@@ -13,7 +13,7 @@ class CoursesRepository
   end
 
   def show(id)
-    Course.includes(:lessons, :sales).find(id)
+    Course.find(id)
   end
 
   def update(id, course_params)

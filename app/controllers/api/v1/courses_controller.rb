@@ -1,13 +1,9 @@
 module Api
   module V1
     class CoursesController < ApplicationController
+      include CoursesHelper
       def index
-        if params[:page]
-          courses = CoursesRepository.new.all(params[:page])
-          return render json: CoursesPresenter.new(courses).as_json, status: :ok
-        end
-        courses = CoursesRepository.new.all
-        render json: CoursesPresenter.new(courses).as_json, status: :ok
+        render json: CoursesPresenter.new(courses(params)).as_json, status: :ok
       end
 
       def create
@@ -39,7 +35,8 @@ module Api
       private
 
       def course_params
-        params.except(:format).permit(:name, :description, :duration, :price, :featured_image)
+        params.except(:format).permit(:name, :description, :duration, :price, :featured_image, :level,
+                                      :programming_language)
       end
     end
   end

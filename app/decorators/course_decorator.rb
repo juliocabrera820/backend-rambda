@@ -5,14 +5,6 @@ class CourseDecorator
     @course = course
   end
 
-  def sales
-    course.sales.map { |sale| sale.attributes.slice('id', 'customer_id', 'course_id') }
-  end
-
-  def lessons
-    course.lessons.map { |sale| sale.attributes.slice('id', 'lesson_number', 'title', 'description', 'video_url') }
-  end
-
   def image_url
     if Rails.env.development?
       url_for(course.featured_image)

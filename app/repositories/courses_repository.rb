@@ -1,10 +1,6 @@
 class CoursesRepository
-  def all(page = nil)
-    if page
-      per_page = 6
-      return Course.limit(per_page).offset(per_page * (page.to_i - 1))
-    end
-    Course.includes(:lessons, :sales).all
+  def all
+    Course.all
   end
 
   def create(course_params)
@@ -13,7 +9,7 @@ class CoursesRepository
   end
 
   def show(id)
-    Course.includes(:lessons, :sales).find(id)
+    Course.find(id)
   end
 
   def update(id, course_params)
@@ -23,5 +19,22 @@ class CoursesRepository
 
   def delete(id)
     Course.destroy(id)
+  end
+
+  def pagination(page)
+    per_page = 6
+    Course.limit(per_page).offset(per_page * (page.to_i - 1))
+  end
+
+  def find_by_topic(topic)
+    Course.where(topic: topic)
+  end
+
+  def find_by_programming_language(programming_language)
+    Course.where(programming_language: programming_language)
+  end
+
+  def find_by_level(level)
+    Course.where(level: level)
   end
 end

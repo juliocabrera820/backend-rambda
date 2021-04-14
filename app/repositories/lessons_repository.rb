@@ -21,4 +21,13 @@ class LessonsRepository
   def delete(id)
     Lesson.destroy(id)
   end
+
+  def course_lessons(course_id)
+    Lesson.where(course_id: course_id)
+  end
+
+  def course_lesson(course_id, lesson_id)
+    lessons = Lesson.where(id: lesson_id, course_id: course_id)
+    lessons[0]
+  end
 end

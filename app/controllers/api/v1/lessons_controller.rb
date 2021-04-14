@@ -1,6 +1,11 @@
 module Api
   module V1
     class LessonsController < ApplicationController
+      def index
+        course_lessons = LessonsRepository.new.course_lessons(params[:course_id])
+        render json: LessonsPresenter.new(course_lessons).as_json, status: :ok
+      end
+
       def create
         if LessonsRepository.new.create(lesson_params, params[:course_id])
           render json: { message: 'lesson created successfully' }, status: :created
@@ -10,10 +15,11 @@ module Api
       end
 
       def show
-        lesson = LessonsRepository.new.show(params[:id])
+        lesson = LessonsRepository.new.course_lesson(params[:course_id], params[:id])
         render json: LessonPresenter.new(lesson).as_json, status: :ok
       end
 
+      #TODO: FIX
       def update
         if LessonsRepository.new.update(params[:id], lesson_params)
           render json: { message: 'Lesson has been successfully updated' }, status: :ok
@@ -22,6 +28,7 @@ module Api
         end
       end
 
+      #TODO: FIX
       def destroy
         LessonsRepository.new.delete(params[:id])
         head :no_content

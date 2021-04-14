@@ -26,6 +26,7 @@ module BackendRambda
     config.autoload_paths += Dir[Rails.root.join('app', 'repositories')]
     config.autoload_paths += Dir[Rails.root.join('app', 'presenters')]
     config.autoload_paths += Dir[Rails.root.join('app', 'decorators')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'helpers')]
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

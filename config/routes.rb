@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       end
       resources :customers
       resources :sales, except: [:update, :destroy]
+      resources :topics
     end
   end
 end

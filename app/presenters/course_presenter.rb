@@ -12,8 +12,8 @@ class CoursePresenter
       duration: course.duration,
       price: course.price,
       image_url: course_decorator.image_url,
-      lessons: course_decorator.lessons,
-      sales: course_decorator.sales
+      level: course.level,
+      programming_language: course.programming_language
     }
   end
 

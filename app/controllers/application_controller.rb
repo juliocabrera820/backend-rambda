@@ -14,7 +14,8 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    @user = User.find(params[:user_id])
+    payload = AuthenticationService.decode_token(request)
+    UsersRepository.new.show(payload['user_id'])
   end
 
   def access_denied

@@ -1,9 +1,11 @@
 module Api
   module V1
     class CoursesController < ApplicationController
+      load_and_authorize_resource
       include CoursesHelper
+
       def index
-        render json: CoursesPresenter.new(courses(params)).as_json, status: :ok
+        render json: CoursesPresenter.new(filter_courses(params)).as_json, status: :ok
       end
 
       def create

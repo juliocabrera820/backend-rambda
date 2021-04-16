@@ -1,5 +1,5 @@
 module CoursesHelper
-  def courses(params)
+  def filter_courses(params)
     return CoursesRepository.new.pagination(params[:page]) if params[:page]
     return CoursesRepository.new.find_by_topic(params[:topic]) if params[:topic]
     if params[:programming_language]

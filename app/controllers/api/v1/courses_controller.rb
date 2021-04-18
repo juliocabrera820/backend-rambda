@@ -1,7 +1,6 @@
 module Api
   module V1
     class CoursesController < ApplicationController
-      load_and_authorize_resource
       include CoursesHelper
 
       def index

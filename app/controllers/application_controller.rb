@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  load_and_authorize_resource
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActiveRecord::RecordInvalid, with: :invalid
   rescue_from CanCan::AccessDenied, with: :access_denied

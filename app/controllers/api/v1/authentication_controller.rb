@@ -7,7 +7,7 @@ module Api
 
       def sign_up
         if UsersRepository.new.create(user_params)
-          render json: { message: 'user successfully' }, status: :ok
+          render json: { message: 'user created successfully' }, status: :ok
         else
           render json: { message: 'record invalid' }, status: :unprocessable_entity
         end

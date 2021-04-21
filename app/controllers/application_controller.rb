@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  load_and_authorize_resource
+  load_and_authorize_resource except: %i[sign_in sign_up]
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActiveRecord::RecordInvalid, with: :invalid
   rescue_from CanCan::AccessDenied, with: :access_denied

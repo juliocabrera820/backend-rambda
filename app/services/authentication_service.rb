@@ -15,7 +15,7 @@ class AuthenticationService
 
   def self.encode(user_data)
     expiration_time = Time.now.to_i + 1 * 3600
-    payload = { user_id: user_data.id, exp: expiration_time, aud: [user_data.role] }
+    payload = { user_id: user_data.id, exp: expiration_time }
     JWT.encode(payload, SECRET)
   end
 end

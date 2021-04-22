@@ -3,20 +3,23 @@ class CoursesRepository
     Course.all
   end
 
-  def create(course_params)
+  def create(course_params, user_id)
     course = Course.new(course_params)
+    course.user_id = user_id
     course.save!
   end
 
-  def show(id)
-    Course.find(id)
+  def show(user_id, course_id)
+    course = Course.where(user_id: user_id, id: course_id)
+    course[0]
   end
 
-  def update(id, course_params)
-    course = show(id)
+  def update(course_params, user_id, course_id)
+    course = show(user_id, course_id)
     course.update(course_params)
   end
 
+  # TODO
   def delete(id)
     Course.destroy(id)
   end
@@ -36,5 +39,9 @@ class CoursesRepository
 
   def find_by_level(level)
     Course.where(level: level)
+  end
+
+  def instructor_courses(id)
+    Course.where(user_id: id)
   end
 end

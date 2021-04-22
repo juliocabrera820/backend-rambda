@@ -1,8 +1,4 @@
 class UsersRepository
-  def all
-    User.includes(:sales).all
-  end
-
   def create(user_params)
     user = User.new(user_params)
     user.save!
@@ -23,5 +19,9 @@ class UsersRepository
 
   def find_user_by_email(email)
     User.find_by(email: email)
+  end
+
+  def sales
+    User.includes(:sales).all
   end
 end

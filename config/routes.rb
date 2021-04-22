@@ -3,14 +3,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/authentication/sign_up', to: 'authentication#sign_up'
       post '/authentication/sign_in', to: 'authentication#sign_in'
-      resources :courses do
-        resources :lessons
-      end
       resources :users do
-        resources :courses
+        resources :courses do
+          resources :lessons
+        end
+        resources :sales, except: [:update, :destroy]
+        resources :topics
       end
-      resources :sales, except: [:update, :destroy]
-      resources :topics
     end
   end
 end

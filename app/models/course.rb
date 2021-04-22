@@ -5,4 +5,5 @@ class Course < ApplicationRecord
   has_many :lessons, dependent: :destroy
   has_many :sales
   has_and_belongs_to_many :topics
+  belongs_to :user
 end

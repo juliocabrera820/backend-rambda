@@ -4,11 +4,12 @@ module Api
       include CoursesHelper
 
       def index
-        render json: CoursesPresenter.new(filter_courses(params)).as_json, status: :ok
+        render json: CoursesPresenter.new(CoursesRepository.new.instructor_courses(params[:user_id])).as_json,
+               status: :ok
       end
 
       def create
-        if CoursesRepository.new.create(course_params)
+        if CoursesRepository.new.create(course_params, params[:user_id])
           render json: { message: 'course created successfully' }, status: :created
         else
           render json: course.error, status: :unprocessable_entity
@@ -16,20 +17,21 @@ module Api
       end
 
       def show
-        course = CoursesRepository.new.show(params[:id])
+        course = CoursesRepository.new.show(params[:user_id], params[:id])
         render json: CoursePresenter.new(course).as_json, status: :ok
       end
 
       def update
-        if CoursesRepository.new.update(params[:id], course_params)
+        if CoursesRepository.new.update(course_params, params[:user_id], params[:course_id])
           render json: { message: 'Course has been successfully updated' }, status: :ok
         else
           render json: { message: 'Course could not be updated' }, status: :unprocessable_entity
         end
       end
 
+      # TODO
       def destroy
-        CoursesRepository.new.delete(params[:id])
+        CoursesRepository.new.delete(params[:user_id], params[:id])
         head :no_content
       end
 

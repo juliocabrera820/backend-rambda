@@ -1,6 +1,6 @@
 class SalesRepository
-  def all
-    Sale.all
+  def all(user_id)
+    Sale.where(user_id: user_id)
   end
 
   def create(sale_params)
@@ -8,7 +8,7 @@ class SalesRepository
     sale.save!
   end
 
-  def show(id)
-    Sale.find(id)
+  def show(user_id, course_id)
+    Sale.where(course_id: course_id, user_id: user_id)
   end
 end

@@ -1,4 +1,4 @@
-class UserPresenter
+class InstructorCoursesPresenter
   def initialize(user)
     @user = user
   end
@@ -7,7 +7,8 @@ class UserPresenter
     {
       id: user.id,
       name: user.name,
-      email: user.email
+      email: user.email,
+      courses: user.courses
     }
   end
 

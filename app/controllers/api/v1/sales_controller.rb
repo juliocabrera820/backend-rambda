@@ -2,7 +2,7 @@ module Api
   module V1
     class SalesController < ApplicationController
       def index
-        sales = SalesRepository.new.all
+        sales = SalesRepository.new.all(params[:user_id])
         render json: SalesPresenter.new(sales).as_json, status: :ok
       end
 
@@ -15,14 +15,14 @@ module Api
       end
 
       def show
-        lesson = SalesRepository.new.show(params[:id])
+        lesson = SalesRepository.new.show(params[:user_id], params[:course_id])
         render json: SalePresenter.new(lesson).as_json, status: :ok
       end
 
       private
 
       def sale_params
-        params.except(:format).permit(:customer_id, :course_id)
+        params.except(:format).permit(:user_id, :course_id)
       end
     end
   end

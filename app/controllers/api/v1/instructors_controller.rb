@@ -1,6 +1,6 @@
 module Api
   module V1
-    class UsersController < ApplicationController
+    class InstructorsController < ApplicationController
       def show
         customer = UsersRepository.new.show(params[:id])
         render json: UserPresenter.new(customer).as_json, status: :ok

@@ -9,15 +9,17 @@ class LessonsRepository
     lesson.save!
   end
 
-  def show(id)
-    Lesson.find(id)
+  def show(course_id, lesson_id)
+    lesson = Lesson.where(course_id: course_id, id: lesson_id)
+    lesson[0]
   end
 
-  def update(id, lesson_params)
-    lesson = show(id)
+  def update(lesson_params, course_id, lesson_id)
+    lesson = show(course_id, lesson_id)
     lesson.update(lesson_params)
   end
 
+  # TODO
   def delete(id)
     Lesson.destroy(id)
   end

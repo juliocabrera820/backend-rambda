@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :user, class: Course do
+  factory :course, class: Course do
     name { 'Ruby course' }
     description { 'Introduction to OOP' }
     duration { 300 }

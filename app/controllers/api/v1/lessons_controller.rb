@@ -15,20 +15,19 @@ module Api
       end
 
       def show
-        lesson = LessonsRepository.new.course_lesson(params[:course_id], params[:id])
+        lesson = LessonsRepository.new.show(params[:course_id], params[:id])
         render json: LessonPresenter.new(lesson).as_json, status: :ok
       end
 
-      #TODO: FIX
       def update
-        if LessonsRepository.new.update(params[:id], lesson_params)
+        if LessonsRepository.new.update(lesson_params, params[:course_id], params[:id])
           render json: { message: 'Lesson has been successfully updated' }, status: :ok
         else
           render json: { message: 'Lesson could not be updated' }, status: :unprocessable_entity
         end
       end
 
-      #TODO: FIX
+      # TODO
       def destroy
         LessonsRepository.new.delete(params[:id])
         head :no_content
@@ -37,7 +36,7 @@ module Api
       private
 
       def lesson_params
-        params.except(:format).permit(:lesson_number, :title, :description, :video_url)
+        params.except(:format).permit(:title, :description, :video_url)
       end
     end
   end

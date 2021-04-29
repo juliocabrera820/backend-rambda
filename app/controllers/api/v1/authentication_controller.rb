@@ -14,6 +14,7 @@ module Api
       end
 
       def sign_in
+        return email_error unless @user
         return user_error unless @user.authenticate(params[:password])
 
         token = AuthenticationService.encode(@user)
@@ -36,6 +37,10 @@ module Api
 
       def user_error
         render json: { message: 'password is wrong' }, status: :unprocessable_entity
+      end
+
+      def email_error
+        render json: { message: 'email does not exist' }, status: :unprocessable_entity
       end
     end
   end

@@ -28,5 +28,10 @@ RSpec.describe 'Authentication', type: :request do
       expect(response).to have_http_status(:unprocessable_entity)
       expect(JSON.parse(response.body)).to eq('message' => 'password is wrong')
     end
+    it 'returns a http status 422' do
+      post '/api/v1/authentication/sign_in', params: { email: 'example@gmail.com', password: '123' }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(JSON.parse(response.body)).to eq('message' => 'email does not exist')
+    end
   end
 end

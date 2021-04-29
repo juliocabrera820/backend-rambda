@@ -19,9 +19,9 @@ class LessonsRepository
     lesson.update(lesson_params)
   end
 
-  # TODO
-  def delete(id)
-    Lesson.destroy(id)
+  def delete(course_id, id)
+    lesson = show(course_id, id)
+    lesson.destroy
   end
 
   def course_lessons(course_id)

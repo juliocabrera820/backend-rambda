@@ -19,9 +19,9 @@ class CoursesRepository
     course.update(course_params)
   end
 
-  # TODO
-  def delete(id)
-    Course.destroy(id)
+  def delete(user_id, id)
+    course = show(user_id, id)
+    course.destroy
   end
 
   def pagination(page)

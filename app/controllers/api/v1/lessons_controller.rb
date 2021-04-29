@@ -27,9 +27,8 @@ module Api
         end
       end
 
-      # TODO
       def destroy
-        LessonsRepository.new.delete(params[:id])
+        LessonsRepository.new.delete(params[:course_id], params[:id])
         head :no_content
       end
 

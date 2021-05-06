@@ -38,6 +38,11 @@ module Api
         render json: CoursesPresenter.new(filter_courses(params)).as_json, status: :ok
       end
 
+      def search
+        courses = CoursesRepository.new.find_by_name(params[:search])
+        render json: CoursesPresenter.new(courses).as_json
+      end
+
       private
 
       def course_params

@@ -41,6 +41,10 @@ class CoursesRepository
     Course.where(level: level)
   end
 
+  def find_by_name(name)
+    Course.where("name LIKE lower(?)", "%#{name}%")
+  end
+
   def instructor_courses(id)
     Course.where(user_id: id)
   end

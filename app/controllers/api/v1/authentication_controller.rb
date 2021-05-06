@@ -24,7 +24,7 @@ module Api
       private
 
       def user_params
-        params.permit(:name, :email, :password, :role)
+        params.except(:format).permit(:name, :email, :password, :role, :avatar)
       end
 
       def set_user

@@ -34,6 +34,10 @@ module Api
         head :no_content
       end
 
+      def all
+        render json: CoursesPresenter.new(filter_courses(params)).as_json, status: :ok
+      end
+
       private
 
       def course_params

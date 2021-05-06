@@ -5,7 +5,7 @@ class UsersRepository
   end
 
   def show(id)
-    User.includes(:sales).find(id)
+    User.find(id)
   end
 
   def update(id, user_params)

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         resources :sales, except: [:update, :destroy]
         resources :topics
       end
+      get '/courses/all', to: 'courses#all'
     end
   end
 end

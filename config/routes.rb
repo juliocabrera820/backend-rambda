@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         resources :topics
       end
       get '/courses/all', to: 'courses#all'
+      get '/courses/search', to: 'courses#search'
     end
   end
 end

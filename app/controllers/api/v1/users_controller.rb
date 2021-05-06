@@ -2,8 +2,8 @@ module Api
   module V1
     class UsersController < ApplicationController
       def show
-        customer = UsersRepository.new.show(params[:id])
-        render json: UserPresenter.new(customer).as_json, status: :ok
+        user = UsersRepository.new.show(params[:id])
+        render json: UserPresenter.new(user).as_json, status: :ok
       end
 
       def update
@@ -22,7 +22,7 @@ module Api
       private
 
       def user_params
-        params.permit(:name, :email, :password)
+        params.except(:format).permit(:name, :email, :password, :role, :avatar)
       end
     end
   end
